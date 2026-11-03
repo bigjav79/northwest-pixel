@@ -354,3 +354,6 @@ legend{font-weight:600;font-size:.9rem;margin-bottom:.6rem;padding:0}
 .free-note.on-light{color:var(--ink-2);margin:var(--s4) 0 var(--s5)}
 .free-note.on-light b{color:var(--ink,#08131c)}
 .free-note.on-light .ico{color:#1b8fc0}
+.foot-credit b{color:#fff;font-weight:600}
+.foot-credit a{color:var(--cyan);text-decoration:none;font-weight:600}
+.foot-credit a:hover{text-decoration:underline}

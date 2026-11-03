@@ -45,7 +45,7 @@
   /* ---------- Estimator ---------- */
   const form = document.getElementById('quoteForm');
   const estV = document.getElementById('estValue'), estP = document.getElementById('estPlan'), estF = document.getElementById('estFill');
-  const MIN = 500, MAX = 800;
+  const MIN = 500, MAX = 1000;
   let shown = MIN;
 
   function calc(){
@@ -54,25 +54,25 @@
     n += +form.querySelector('input[name=help]:checked').value;
     return Math.min(MAX, Math.round(n / 25) * 25);
   }
-  function planFor(n){ return n <= 550 ? 'Starter package' : n <= 700 ? 'Business package' : 'Premium package'; }
+  function planFor(n){ return n <= 550 ? 'Starter package' : n <= 750 ? 'Business package' : 'Premium package'; }
 
   function update(){
     const target = calc();
     estP.textContent = planFor(target) + (target === MAX ? ' · max price' : '');
     estF.style.width = ((target - MIN) / (MAX - MIN) * 100) + '%';
-    if (reduce){ estV.textContent = '$' + target; shown = target; return; }
+    if (reduce){ estV.textContent = '$' + target.toLocaleString(); shown = target; return; }
     const from = shown, start = performance.now();
     (function step(now){
       const k = Math.min(1, (now - start) / 300);
       shown = Math.round(from + (target - from) * (1 - Math.pow(1 - k, 3)));
-      estV.textContent = '$' + shown;
+      estV.textContent = '$' + shown.toLocaleString();
       if (k < 1) requestAnimationFrame(step);
     })(start);
   }
   form.addEventListener('change', update);
 
   // Plan buttons preselect the estimator
-  const presets = { starter:{help:'0',feats:[]}, business:{help:'50',feats:[0,1]}, premium:{help:'100',feats:[0,1,2,3,4]} };
+  const presets = { starter:{help:'0',feats:[]}, business:{help:'100',feats:[0,1]}, premium:{help:'200',feats:[0,1,2,3,4]} };
   document.querySelectorAll('[data-plan]').forEach(b => b.addEventListener('click', () => {
     const p = presets[b.dataset.plan];
     form.querySelector(`input[name=help][value="${p.help}"]`).checked = true;
