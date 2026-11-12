@@ -16,7 +16,7 @@
 
   // active link
   const links = [...menu.querySelectorAll('a')];
-  const map = { top:'#top', services:'#services', work:'#work', about:'#about', pricing:'#pricing', quote:'#quote' };
+  const map = { top:'#top', work:'#work', about:'#about', pricing:'#pricing', quote:'#quote' };
   const secs = Object.keys(map).map(id => id === 'top' ? document.querySelector('.hero') : document.getElementById(id));
   const spy = () => {
     let cur = '#top';
