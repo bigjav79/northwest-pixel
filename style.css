@@ -385,3 +385,7 @@ a.work:hover .work-cap em{text-decoration:underline;text-underline-offset:3px}
   .svc-grid.one .svc-ico{margin:-22px 0 0 var(--s5)}
   .work-grid.two{grid-template-columns:1fr}
 }
+.about-in.nophoto{grid-template-columns:1.4fr 1fr;gap:var(--s12)}
+.about-in.nophoto .vals{grid-column:auto;grid-template-columns:1fr;max-width:420px;justify-self:end;width:100%}
+.about-in.nophoto .vals li+li{border-top:1px solid #edf1f4}
+@media (max-width:760px){.about-in.nophoto{grid-template-columns:1fr;gap:var(--s8)}.about-in.nophoto .vals{justify-self:stretch;max-width:none}}
